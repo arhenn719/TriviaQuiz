@@ -1,0 +1,12 @@
+body {
+  background-image: url('./assets/bricks.jpg');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
