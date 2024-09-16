@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 function finish() {
     const location = useLocation();

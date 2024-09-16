@@ -1,5 +1,5 @@
 body {
-  background-image: url('./assets/bricks.jpg');
+  background-image: url('./bricks.jpg');
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,4 +67,14 @@ body {
 
 #translate-div {
   transform: translate(0, -10px);
+}
+
+#popup {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 80%);
+  top: 0;
+  left: 0;
+  z-index: 5;
 }

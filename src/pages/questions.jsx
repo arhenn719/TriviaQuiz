@@ -22,9 +22,32 @@ function questions() {
         navigate('/finish', { state: { answerScore: score, difficulty: difficulty, category: category } });
         return
     }
+    const exitGame = (yesno) => {
+        if (yesno) {
+            navigate('/',)
+        } else {
+            const popup = document.querySelector('#popup');
+            popup.classList.add('hidden');
+        }
+
+
+    }
+    const openPopup = () => {
+        const popup = document.querySelector('#popup');
+        popup.classList.remove('hidden');
+    }
 
     return (
         <>
+            <div id="popup" className="hidden d-flex justify-content-center align-items-center">
+                <div className="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-4 card p-4 text-center">
+                    <span className="mb-4 fw-bold">Are you sure do you want to finish the game?</span>
+                    <div className="d-flex flex-row justify-content-around my-2">
+                        <button className="btn btn-danger p-2 col-5" onClick={() => exitGame(false)}>No</button>
+                        <button className="btn btn-success p-2 col-5" onClick={() => exitGame(true)} >Yes</button>
+                    </div>
+                </div>
+            </div>
             <div className='d-flex flex-row justify-content-between align-items-center'>
                 <span id="card-count" >{card + 1}/5</span>
                 <span className='fw-bold text-secondary'>Score: {score}</span>
@@ -63,6 +86,9 @@ function questions() {
 
 
             ))}
+            <div className="flex flex-row justify-content-center text-center">
+                <div className="btn btn-danger col-xs-10 col-sm-10 col-md-5 p-2 mt-2" onClick={() => openPopup()}>Exit</div>
+            </div>
 
         </>
     )
@@ -70,4 +96,7 @@ function questions() {
 
 export default questions;
 
-// problemas: como cambiar de tarjetitas, cambiar clases de forma dinamica para saber cual correcto y cual no, envio a finish al acabar la 5 tarjeta, decode de respuestas
+
+/* 
+
+*/
