@@ -3,10 +3,68 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
   box-sizing: border-box;
+  height: 100vh;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+#container-gral {
+  height: "calc(100vh - 10rem)";
+  max-width: '800px';
+}
+
+.question-box {
+  border-radius: 20px;
+  font-size: 1.7em;
+}
+
+@media (max-width: 576px) {
+  .content-general-btn button {
+    width: 100%;
+  }
+}
+
+#final-score {
+  font-size: 5em;
+  background: linear-gradient(to right, #1C93CF 6%, #09CF66 100%);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.container-finish {
+  font-size: 1.2em;
+}
+
+.text-end {
+  font-size: 1.4em;
+}
+
+#exit,
+#restart {
+  padding: 1.2em;
+  max-width: 200px;
+  width: 100%;
+  margin: 0 10px;
+}
+
+#text-grats {
+  font-size: 25px;
+  margin-top: 20px;
+  display: block;
+  font-weight: bold;
+}
+
+#card-count {
+  font-weight: bold;
+  font-size: 19px;
+  text-shadow: 1px 0px 5px #1d5ab5;
+  color: white;
+}
+
+#translate-div {
+  transform: translate(0, -10px);
 }

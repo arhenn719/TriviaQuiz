@@ -8,15 +8,14 @@ import './App.css'
 function App() {
   return (
     <>
-      <div className='container my-3 flex flex-col items-center justify-center gap-10'>
-        <div className='card'>
-          <div className="card-body">
+      <div id="container-gral" className='container my-3 d-flex align-items-center justify-content-center'>
+        <div className='card h-100 col-12'>
+          <div className="p-3 d-flex flex-column">
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/questions' element={<Questions />} />
               <Route path='/finish' element={<Finish />} />
             </Routes>
-            <Outlet />
           </div>
         </div>
       </div>
