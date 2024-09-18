@@ -67,7 +67,7 @@ export function useQuestions(url) {
             correct_answer = true
 
         } else {
-            btnData.state = 'btn btn-danger col-xs-10 col-sm-10 col-md-5 mx-2 px-3 py-4 my-2';
+            btnData.state = 'btn btn-danger col-xs-10 col-sm-10 col-md-5 mx-2 px-3 py-4 my-2 temblor';
             newData[questionIndex].buttons[newData[questionIndex].correctButtonIndex].state = 'btn btn-success col-xs-10 col-sm-10 col-md-5 mx-2 px-3 py-4 my-2';
         }
         newData[questionIndex].buttons[buttonIndex] = btnData

@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Finish from './pages/finish'
 import Questions from './pages/questions';
+import PositionTable from './pages/positionTable';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/questions' element={<Questions />} />
               <Route path='/finish' element={<Finish />} />
+              <Route path='/positionTable' element={<PositionTable />} />
             </Routes>
           </div>
         </div>
