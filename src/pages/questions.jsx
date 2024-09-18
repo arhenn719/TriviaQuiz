@@ -1,27 +1,33 @@
 import { useQuestions } from '../hooks/useQuestions';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 
 function questions() {
+
     const [score, setScore] = useState(0);
     const navigate = useNavigate();
     const location = useLocation();
-    let category = location?.state?.category != null ? location.state.category : ''
-    let difficulty = location?.state?.difficulty != null ? location.state.difficulty : ''
+
+    const category = location?.state?.category ?? '';
+    const difficulty = location?.state?.difficulty ?? '';
+
     let newurl = 'https://opentdb.com/api.php?amount=5&type=multiple';
+
     if (location.state != null) {
-        newurl = `https://opentdb.com/api.php?amount=5&type=multiple&difficulty=${location.state.difficulty}&category=${location.state.category}`
+        newurl = `https://opentdb.com/api.php?amount=5&type=multiple&difficulty=${difficulty}&category=${category}`
 
     }
 
     const { data, updateData, card, loading, error } = useQuestions(newurl);
 
-    if (data?.length && (card == data?.length)) {
-        navigate('/finish', { state: { answerScore: score, difficulty: difficulty, category: category } });
-        return
-    }
+    useEffect(() => {
+        if (!loading & (card == data.length & data.length > 0)) {
+            navigate('/finish', { state: { answerScore: score, difficulty: difficulty, category: category } });
+        }
+    }, [card, loading])
+
     const exitGame = (yesno) => {
         if (yesno) {
             navigate('/',)
@@ -37,21 +43,22 @@ function questions() {
         popup.classList.remove('hidden');
     }
 
+
     return (
         <>
             <div id="popup" className="hidden d-flex justify-content-center align-items-center">
                 <div className="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-4 card p-4 text-center">
-                    <span className="mb-4 fw-bold">Are you sure do you want to finish the game?</span>
+                    <span className="mb-4 fw-bold">Are you sure you want to finish the game?</span>
                     <div className="d-flex flex-row justify-content-around my-2">
                         <button className="btn btn-danger p-2 col-5" onClick={() => exitGame(false)}>No</button>
                         <button className="btn btn-success p-2 col-5" onClick={() => exitGame(true)} >Yes</button>
                     </div>
                 </div>
             </div>
-            <div className='d-flex flex-row justify-content-between align-items-center'>
+            {!loading && <div className='d-flex flex-row justify-content-between align-items-center'>
                 <span id="card-count" >{card + 1}/5</span>
                 <span className='fw-bold text-secondary'>Score: {score}</span>
-            </div>
+            </div>}
             {loading && <div className='text-center fw-bold text-danger'>Loading please wait...</div>}
 
             {data?.map((q, index) => (
@@ -86,9 +93,11 @@ function questions() {
 
 
             ))}
-            <div className="flex flex-row justify-content-center text-center">
-                <div className="btn btn-danger col-xs-10 col-sm-10 col-md-5 p-2 mt-2" onClick={() => openPopup()}>Exit</div>
-            </div>
+            {!loading &&
+                <div className="flex flex-row justify-content-center text-center">
+                    <div className="btn btn-danger col-xs-10 col-sm-10 col-md-5 p-2 mt-2" onClick={openPopup}>Exit</div>
+                </div>
+            }
 
         </>
     )

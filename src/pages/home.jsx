@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-function home(props) {
+function home() {
     const initialData = {
         category: '',
         difficulty: ''

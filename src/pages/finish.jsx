@@ -3,11 +3,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function finish() {
     const location = useLocation();
     const navigate = useNavigate();
-    const prevScore = location?.state?.answerScore != null ? location.state.answerScore : 0;
+    const prevScore = location?.state?.answerScore ?? 0;
+    const category = location?.state?.category ?? '';
+    const difficulty = location?.state?.difficulty ?? '';
+
     let cardsCountCorrect = prevScore / 20
     let textGrats = 'You can do better'
     const sendButton = (id) => {
-        id == 'exit' ? navigate('/',) : id == 'restart' ? navigate('/questions', { state: { difficulty: location?.state?.difficulty, category: location?.state?.category } }) : ''
+        id == 'exit' ? navigate('/',) : id == 'restart' ? navigate('/questions', { state: { difficulty: difficulty, category: category } }) : ''
     }
 
     if (cardsCountCorrect == 5) {
